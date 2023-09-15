@@ -6,12 +6,11 @@ import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
-import { Platform } from "./services/platformService";
-import { Genre } from "./services/genreService";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId?: number;
+  platformId?: number;
   sortOrder: string;
   searchText: string;
 }
@@ -36,8 +35,10 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           <GenreList
-            selectedGenre={gameQuery.genre}
-            onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            selectedGenreId={gameQuery.genreId}
+            onSelectGenre={(genre) =>
+              setGameQuery({ ...gameQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
@@ -45,9 +46,9 @@ function App() {
         <GameHeading gameQuery={gameQuery} />
         <HStack spacing={5} paddingLeft={3} marginBottom={5}>
           <PlatformSelector
-            selectedPlatform={gameQuery.platform}
+            selectedPlatformId={gameQuery.platformId}
             onSelectPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
+              setGameQuery({ ...gameQuery, platformId: platform.id })
             }
           />
           <SortSelector
@@ -59,6 +60,7 @@ function App() {
         </HStack>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
+      <ReactQueryDevtools initialIsOpen={false} />
     </Grid>
   );
 }

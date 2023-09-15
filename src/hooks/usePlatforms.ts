@@ -5,9 +5,9 @@ import platformService from "../services/platformService";
 const usePlatforms = () =>
   useQuery({
     queryKey: ["platforms"],
-    queryFn: () => platformService.getAll(),
-    staleTime: 24 * 60 * 60 * 1000,
-    initialData: { count: platforms.length, results: platforms },
+    queryFn: platformService.getAll,
+    staleTime: 24 * 60 * 60 * 1000, //24h
+    initialData: platforms,
   });
 
 export default usePlatforms;

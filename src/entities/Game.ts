@@ -1,6 +1,6 @@
 import { Genre } from "./Genre";
 import { Platform } from "./Platform";
-import { Publishers } from "../services/Publishers";
+import { Publishers } from "./Publishers";
 
 export interface Game {
   background_image: string;

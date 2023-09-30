@@ -6,7 +6,6 @@ interface Props {
 const GameTrailer = ({ gameId }: Props) => {
   //Desestructuring data obtain from useTrailers Hook
   const { data, error, isLoading } = useTrailers(gameId);
-  console.log(data);
 
   if (isLoading) return null;
 

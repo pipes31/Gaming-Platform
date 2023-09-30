@@ -8,14 +8,14 @@ interface Props {
 const GameAttributes = ({ game }: Props) => {
   return (
     <SimpleGrid columns={2} as="dl">
-      <DefinitionItem term="MetaScore">
-        <CriticScore score={game.metacritic}></CriticScore>
-      </DefinitionItem>
-
       <DefinitionItem term="Platforms">
         {game.parent_platforms.map(({ platform }) => (
           <Text>{platform.name}</Text>
         ))}
+      </DefinitionItem>
+
+      <DefinitionItem term="MetaScore">
+        <CriticScore score={game.metacritic}></CriticScore>
       </DefinitionItem>
 
       <DefinitionItem term="Genre">
